@@ -1,10 +1,6 @@
 // moneywise-template.js 3.0
 // 
 // 2016-07-18 AAB - Original
-// 2016-11-23 AAB - Function constructor
-// 2016-11-29 AAB - Function templateid i.p.v. container
-// 2016-11-29 AAB - Nu met script empty en caching werkt nu pas
-// 2016-11-29 AAB - Escaping single quote
 (function ($)
 {
 	$.fn.Template = function (templateid, data, append)
