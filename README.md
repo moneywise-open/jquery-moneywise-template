@@ -5,22 +5,74 @@ Small, Fast, mixed mode javascript / html template used in an jquery environment
 ## Getting Started
 
 Just copy the moneywise-template.js to your project and make a script reference to it.
-Als a reference to one of the JQuery versions must be included.
+Also a reference to one of the JQuery versions must be included.
 
-## Example template
+Template can be a mixture of javascript / jquery / html
+
+Script begin seperator is {{ and script end seperator is }}
+
+Shortcut to direct output is the begin seperator postfixed by = character.  {{=
 
 ```
-<script id="TemplateId" type="text/template">
-	<div class="pure-u-1-1">Name: {{=this.name}} (Age {{=this.age}})</div>
-	{{ $.each(this.cars, function (index,item) { }}
-		<div  class="pure-u-1-3">
-			<div id="car-{{=item.carid}}">Car: {{=item.name}}</div>
-			{{ $.each(item.models, function (indx,m) { }}
-				<div class="C{{=indx}}">Nr: {{=indx}} Model: {{=m}}</div>
-			{{ }); }}
-		</div>
-	{{ }); }}
+<script type="text/template">
+  {{ var i = 123; }}
+  <div>
+    Testing {{=i}}
+    {{ if(i>100) { }}
+       <span>Greather than 100</span>
+    {{ } else { }}
+       <span>Lesser than 100</span>
+    {{ } }}
+   </div>
 </script>
+```
+
+Using jquery
+
+```
+<script type="text/template">
+  {{ var ar = [ "red" , "green" , "yellow" ]; }}
+  <div>Many colors</div>
+  {{ $.each(ar, function(index,item) { }}
+     <div style="background-color:{{=item}}">{{=item}}</div>
+  {{ }); }}
+</script>
+
+
+
+## Example template and html
+
+```
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+	<title>Template Example</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link href="css/pure-min.css" rel="stylesheet" />
+	<script src="Scripts/jquery-3.1.1.min.js"></script>
+	<script src="Scripts/moneywise-template.js"></script>
+	<script src="Default.js"></script>
+	<link href="Default.css" rel="stylesheet" />
+</head>
+<body class="pure-g">
+
+	<script id="TemplateId" type="text/template">
+		<div class="pure-u-1-1">Name: {{=this.name}} (Age {{=this.age}})</div>
+		{{ $.each(this.cars, function (index,item) { }}
+			<div  class="pure-u-1-3">
+				<div id="car-{{=item.carid}}">Car: {{=item.name}}</div>
+				{{ $.each(item.models, function (indx,m) { }}
+					<div class="C{{=indx}}">Nr: {{=indx}} Model: {{=m}}</div>
+				{{ }); }}
+			</div>
+		{{ }); }}
+	</script>
+
+	<div id="OutputId"></div>
+
+</body>
+</html>
 ```
 
 
@@ -29,7 +81,6 @@ Als a reference to one of the JQuery versions must be included.
 For emptying the output and inserting template result use false as a last argument.
 
 ```
-
 var data = 
 {
 	"name":"John",
@@ -61,3 +112,7 @@ $("#SelectorToOutput").Template("#TemplateId", data, true);
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Moneywise (https://www.moneywise.nl/)
