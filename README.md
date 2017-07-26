@@ -37,6 +37,7 @@ Using jquery
      <div style="background-color:{{=item}}">{{=item}}</div>
   {{ }); }}
 </script>
+```
 
 
 
